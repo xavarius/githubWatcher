@@ -2,13 +2,15 @@ package com.maciejmalak.githubstatistics.API;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
+import android.net.http.HttpResponseCache;
 
 import com.maciejmalak.githubstatistics.activities.UserDetailedView;
 import com.maciejmalak.githubstatistics.helpers.Logger;
-import com.maciejmalak.githubstatistics.model.GithubStatisticModel;
+import com.maciejmalak.githubstatistics.model.GithubUser;
+import com.maciejmalak.githubstatistics.model.GithubUserModel;
 import com.maciejmalak.githubstatistics.model.Repository;
 
+import java.net.HttpURLConnection;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -41,9 +43,11 @@ public class Requester {
             public void onResponse(Call<ArrayList<Repository>> call, Response<ArrayList<Repository>> response) {
                 logger.logd("RESPONSE OK, code:  " + Integer.toString(response.code()));
 
-                final ArrayList<Repository> repositories = response.body();
-                GithubStatisticModel.getInstance().putRepositories(userName, repositories);
-                startUserDetailedActivity(userName);
+                if(response.code() == HttpURLConnection.HTTP_OK) {
+                    final ArrayList<Repository> repositories = response.body();
+                    GithubUserModel.getInstance().putUserForce(new GithubUser(repositories, userName));
+                    startUserDetailedActivity(userName);
+                }
             }
 
             @Override
