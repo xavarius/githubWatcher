@@ -7,6 +7,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 // TODO store in a DB, sync with DB
+// TODO APPLY DAO pattern to Model/User
 
 public class GithubUserModel {
     private static GithubUserModel mModelInstance = null;

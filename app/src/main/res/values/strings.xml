@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">GitHub Watcher</string>
     <string name="repos_amout">Repositories</string>
+    <string name="user_login_hint">Enter Github user login</string>
 </resources>

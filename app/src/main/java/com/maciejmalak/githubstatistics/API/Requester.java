@@ -2,7 +2,6 @@ package com.maciejmalak.githubstatistics.API;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.http.HttpResponseCache;
 
 import com.maciejmalak.githubstatistics.activities.UserDetailedView;
 import com.maciejmalak.githubstatistics.helpers.Logger;

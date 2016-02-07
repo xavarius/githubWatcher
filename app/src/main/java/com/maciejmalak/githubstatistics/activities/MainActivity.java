@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.maciejmalak.githubstatistics.API.Requester;
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private Requester requester;
 
     /* Bingind views with ButterKnife*/
-    @Bind(R.id.textview) protected TextView textView;
+    @Bind(R.id.main_user_login) protected EditText tvUserLogin;
     @Bind(R.id.toolbar) protected Toolbar toolbar;
     @Bind(R.id.fab) protected FloatingActionButton fab;
 
@@ -37,8 +38,10 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final String userName = tvUserLogin.getText().toString();
                 logger.logd("REQUEST SEND");
-                requester.requestRepositoryForUser("xavarius"); // for now dummy user == I'm the dummy user.
+                if (userName != null && !userName.equals(""))
+                requester.requestRepositoryForUser(userName);
             }
         });
     }

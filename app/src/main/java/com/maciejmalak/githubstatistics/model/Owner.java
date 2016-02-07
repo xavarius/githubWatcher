@@ -1,8 +1,9 @@
 package com.maciejmalak.githubstatistics.model;
 
-        import java.util.HashMap;
-        import java.util.Map;
-        import javax.annotation.Generated;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.annotation.Generated;
 
 @Generated("org.jsonschema2pojo")
 public class Owner {
