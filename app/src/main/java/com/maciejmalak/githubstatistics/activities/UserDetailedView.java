@@ -29,8 +29,8 @@ public class UserDetailedView extends AppCompatActivity {
     }
 
     private void loadDetailedUserData(final String userName) {
-        mTvUserName.setText(userName);
         final GithubUser user = mModel.getUser(userName);
-        mTvNbrRepos.setText(String.format("%d",user.getReposAmout()));
+        mTvUserName.setText(user.getLogin() == null ? "its null" : user.getLogin());
+        mTvNbrRepos.setText(String.format("%d",user.getPublicRepos()));
     }
 }

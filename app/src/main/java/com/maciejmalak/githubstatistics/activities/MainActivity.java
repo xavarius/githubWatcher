@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.maciejmalak.githubstatistics.API.Requester;
 import com.maciejmalak.githubstatistics.R;
@@ -18,9 +17,8 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
     private Logger logger = new Logger(this.getClass().getSimpleName());
 
-    private Requester requester;
+    private static Requester requester;
 
-    /* Bingind views with ButterKnife*/
     @Bind(R.id.main_user_login) protected EditText tvUserLogin;
     @Bind(R.id.toolbar) protected Toolbar toolbar;
     @Bind(R.id.fab) protected FloatingActionButton fab;
@@ -41,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 final String userName = tvUserLogin.getText().toString();
                 logger.logd("REQUEST SEND");
                 if (userName != null && !userName.equals(""))
-                requester.requestRepositoryForUser(userName);
+                requester.fetchUserDescription(userName);
             }
         });
     }

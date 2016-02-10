@@ -1,20 +1,17 @@
 package com.maciejmalak.githubstatistics.model;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.ArrayList;
 
-// TODO store in a DB, sync with DB
-// TODO APPLY DAO pattern to Model/User
-
+// TODO What kind of design pattern can implement instead/along this? DAO?
 public class GithubUserModel {
     private static GithubUserModel mModelInstance = null;
-    private static LinkedHashMap<String, GithubUser> mUsersData;
+    private static ArrayList<GithubUser> mUsersData;
 
     private GithubUserModel() {
-        mUsersData = new LinkedHashMap<>();
+        mUsersData = new ArrayList<>();
     }
 
     public static synchronized GithubUserModel getInstance() {
@@ -25,27 +22,27 @@ public class GithubUserModel {
     }
 
     public synchronized void putUser(final GithubUser user) {
-        if (!mUsersData.containsValue(user)) {
-            mUsersData.put(user.getUserLogin(), user);
+        if (!mUsersData.contains(user)) {
+            mUsersData.add(user);
         }
     }
 
     public synchronized void putUserForce(final GithubUser user) {
-        mUsersData.put(user.getUserLogin(), user);
+        mUsersData.add(user);
     }
 
     @NonNull
-    public synchronized LinkedHashMap<String, GithubUser> getAllUsers() {
+    public synchronized ArrayList<GithubUser> getAllUsers() {
         return mUsersData;
     }
 
-    @NonNull
+    @Nullable
     public synchronized GithubUser getUser(final String user) {
-        for (Map.Entry<String, GithubUser> entry : mUsersData.entrySet()) {
-            if (entry.getKey().equals(user)) {
-                return entry.getValue();
+        for (GithubUser u : mUsersData) {
+            if (u.getLogin().equals(user)) {
+                return u;
             }
         }
-        return new GithubUser(Collections.<Repository>emptyList(),"");
+        return null;
     }
 }

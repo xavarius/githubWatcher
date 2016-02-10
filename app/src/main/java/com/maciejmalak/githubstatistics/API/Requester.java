@@ -2,15 +2,14 @@ package com.maciejmalak.githubstatistics.API;
 
 import android.content.Context;
 import android.content.Intent;
+import android.widget.Toast;
 
 import com.maciejmalak.githubstatistics.activities.UserDetailedView;
 import com.maciejmalak.githubstatistics.helpers.Logger;
 import com.maciejmalak.githubstatistics.model.GithubUser;
 import com.maciejmalak.githubstatistics.model.GithubUserModel;
-import com.maciejmalak.githubstatistics.model.Repository;
 
 import java.net.HttpURLConnection;
-import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,7 +26,7 @@ public class Requester {
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
-    private static final Github githubAPI = retrofit.create(Github.class);
+    private static final GithubAPI githubAPI = retrofit.create(GithubAPI.class);
 
     private Context mContext;
 
@@ -35,22 +34,23 @@ public class Requester {
         mContext = context;
     }
 
-    public void requestRepositoryForUser(final String userName) {
-        Call<ArrayList<Repository>> repoCall = githubAPI.listRepos(userName);
-        repoCall.enqueue(new Callback<ArrayList<Repository>>() {
+    public void fetchUserDescription(final String userName) {
+        Call<GithubUser> repoCall = githubAPI.getUserDescription(userName);
+        repoCall.enqueue(new Callback<GithubUser>() {
             @Override
-            public void onResponse(Call<ArrayList<Repository>> call, Response<ArrayList<Repository>> response) {
+            public void onResponse(Call<GithubUser> call, Response<GithubUser> response) {
                 logger.logd("RESPONSE OK, code:  " + Integer.toString(response.code()));
 
                 if(response.code() == HttpURLConnection.HTTP_OK) {
-                    final ArrayList<Repository> repositories = response.body();
-                    GithubUserModel.getInstance().putUserForce(new GithubUser(repositories, userName));
+                    final GithubUser user = response.body();
+                    GithubUserModel.getInstance().putUserForce(user);
                     startUserDetailedActivity(userName);
                 }
             }
 
             @Override
-            public void onFailure(Call<ArrayList<Repository>> call, Throwable t) {
+            public void onFailure(Call<GithubUser> call, Throwable t) {
+                Toast.makeText(mContext,"Request failed. Try again.", Toast.LENGTH_SHORT).show();
                 logger.logd("RESPONSE FAILURE");
             }
         });
