@@ -2,11 +2,13 @@ package com.maciejmalak.githubstatistics.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.maciejmalak.githubstatistics.R;
 import com.maciejmalak.githubstatistics.model.GithubUser;
 import com.maciejmalak.githubstatistics.model.GithubUserModel;
+import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -15,6 +17,7 @@ public class UserDetailedView extends AppCompatActivity {
 
     final GithubUserModel mModel = GithubUserModel.getInstance();
 
+    @Bind((R.id.detailed_avatar)) protected ImageView mIvAvatar;
     @Bind(R.id.detailed_user_name) protected TextView mTvUserName;
     @Bind(R.id.detailed_nbr_repos) protected TextView mTvNbrRepos;
 
@@ -30,6 +33,10 @@ public class UserDetailedView extends AppCompatActivity {
 
     private void loadDetailedUserData(final String userName) {
         final GithubUser user = mModel.getUser(userName);
+        Picasso.with(this)
+                .load(user.getAvatarUrl())
+                .into(mIvAvatar);
+
         mTvUserName.setText(user.getLogin() == null ? "its null" : user.getLogin());
         mTvNbrRepos.setText(String.format("%d",user.getPublicRepos()));
     }
