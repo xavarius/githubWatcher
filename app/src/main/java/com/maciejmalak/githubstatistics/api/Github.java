@@ -1,4 +1,4 @@
-package com.maciejmalak.githubstatistics.API;
+package com.maciejmalak.githubstatistics.api;
 
 import com.maciejmalak.githubstatistics.model.Repository;
 

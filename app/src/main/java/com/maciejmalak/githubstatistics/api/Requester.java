@@ -1,8 +1,7 @@
-package com.maciejmalak.githubstatistics.API;
+package com.maciejmalak.githubstatistics.api;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 
 import com.maciejmalak.githubstatistics.activities.UserDetailedView;
 import com.maciejmalak.githubstatistics.helpers.Logger;

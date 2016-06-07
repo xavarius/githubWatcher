@@ -7,7 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
-import com.maciejmalak.githubstatistics.API.Requester;
+import com.maciejmalak.githubstatistics.api.Requester;
 import com.maciejmalak.githubstatistics.R;
 import com.maciejmalak.githubstatistics.helpers.Logger;
 
