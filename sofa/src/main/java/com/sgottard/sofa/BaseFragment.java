@@ -25,8 +25,6 @@ public class BaseFragment extends BrandedFragment {
     private boolean mStartEntranceTransitionPending = false;
     private Object mEntranceTransition;
 
-    static TransitionHelper sTransitionHelper = TransitionHelper.getInstance();
-
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -147,7 +145,7 @@ public class BaseFragment extends BrandedFragment {
         if (mEntranceTransition == null) {
             return;
         }
-        sTransitionHelper.setTransitionListener(mEntranceTransition, new TransitionListener() {
+        TransitionHelper.addTransitionListener(mEntranceTransition, new TransitionListener() {
             @Override
             public void onTransitionStart(Object transition) {
                 onEntranceTransitionStart();
