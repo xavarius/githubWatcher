@@ -1,30 +1,104 @@
 package com.maciejmalak.githubstatistics.model;
 
-        import java.util.HashMap;
-        import java.util.Map;
-        import javax.annotation.Generated;
+import android.util.Log;
+
+import javax.annotation.Generated;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 @Generated("org.jsonschema2pojo")
 public class Owner {
 
+    @SerializedName("login")
+    @Expose
     private String login;
+    @SerializedName("id")
+    @Expose
     private int id;
+    @SerializedName("avatar_url")
+    @Expose
     private String avatarUrl;
+    @SerializedName("gravatar_id")
+    @Expose
     private String gravatarId;
+    @SerializedName("url")
+    @Expose
     private String url;
+    @SerializedName("html_url")
+    @Expose
     private String htmlUrl;
+    @SerializedName("followers_url")
+    @Expose
     private String followersUrl;
+    @SerializedName("following_url")
+    @Expose
     private String followingUrl;
+    @SerializedName("gists_url")
+    @Expose
     private String gistsUrl;
+    @SerializedName("starred_url")
+    @Expose
     private String starredUrl;
+    @SerializedName("subscriptions_url")
+    @Expose
     private String subscriptionsUrl;
+    @SerializedName("organizations_url")
+    @Expose
     private String organizationsUrl;
+    @SerializedName("repos_url")
+    @Expose
     private String reposUrl;
+    @SerializedName("events_url")
+    @Expose
     private String eventsUrl;
+    @SerializedName("received_events_url")
+    @Expose
     private String receivedEventsUrl;
+    @SerializedName("type")
+    @Expose
     private String type;
+    @SerializedName("site_admin")
+    @Expose
     private boolean siteAdmin;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    @SerializedName("name")
+    @Expose
+    private String name;
+    @SerializedName("company")
+    @Expose
+    private Object company;
+    @SerializedName("blog")
+    @Expose
+    private Object blog;
+    @SerializedName("location")
+    @Expose
+    private Object location;
+    @SerializedName("email")
+    @Expose
+    private Object email;
+    @SerializedName("hireable")
+    @Expose
+    private Object hireable;
+    @SerializedName("bio")
+    @Expose
+    private Object bio;
+    @SerializedName("public_repos")
+    @Expose
+    private int publicRepos;
+    @SerializedName("public_gists")
+    @Expose
+    private int publicGists;
+    @SerializedName("followers")
+    @Expose
+    private int followers;
+    @SerializedName("following")
+    @Expose
+    private int following;
+    @SerializedName("created_at")
+    @Expose
+    private String createdAt;
+    @SerializedName("updated_at")
+    @Expose
+    private String updatedAt;
 
     /**
      *
@@ -332,12 +406,241 @@ public class Owner {
         this.siteAdmin = siteAdmin;
     }
 
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
+    /**
+     *
+     * @return
+     * The name
+     */
+    public String getName() {
+        return name;
     }
 
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
+    /**
+     *
+     * @param name
+     * The name
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 
+    /**
+     *
+     * @return
+     * The company
+     */
+    public Object getCompany() {
+        return company;
+    }
+
+    /**
+     *
+     * @param company
+     * The company
+     */
+    public void setCompany(Object company) {
+        this.company = company;
+    }
+
+    /**
+     *
+     * @return
+     * The blog
+     */
+    public Object getBlog() {
+        return blog;
+    }
+
+    /**
+     *
+     * @param blog
+     * The blog
+     */
+    public void setBlog(Object blog) {
+        this.blog = blog;
+    }
+
+    /**
+     *
+     * @return
+     * The location
+     */
+    public Object getLocation() {
+        return location;
+    }
+
+    /**
+     *
+     * @param location
+     * The location
+     */
+    public void setLocation(Object location) {
+        this.location = location;
+    }
+
+    /**
+     *
+     * @return
+     * The email
+     */
+    public Object getEmail() {
+        return email;
+    }
+
+    /**
+     *
+     * @param email
+     * The email
+     */
+    public void setEmail(Object email) {
+        this.email = email;
+    }
+
+    /**
+     *
+     * @return
+     * The hireable
+     */
+    public Object getHireable() {
+        return hireable;
+    }
+
+    /**
+     *
+     * @param hireable
+     * The hireable
+     */
+    public void setHireable(Object hireable) {
+        this.hireable = hireable;
+    }
+
+    /**
+     *
+     * @return
+     * The bio
+     */
+    public Object getBio() {
+        return bio;
+    }
+
+    /**
+     *
+     * @param bio
+     * The bio
+     */
+    public void setBio(Object bio) {
+        this.bio = bio;
+    }
+
+    /**
+     *
+     * @return
+     * The publicRepos
+     */
+    public int getPublicRepos() {
+        return publicRepos;
+    }
+
+    /**
+     *
+     * @param publicRepos
+     * The public_repos
+     */
+    public void setPublicRepos(int publicRepos) {
+        this.publicRepos = publicRepos;
+    }
+
+    /**
+     *
+     * @return
+     * The publicGists
+     */
+    public int getPublicGists() {
+        return publicGists;
+    }
+
+    /**
+     *
+     * @param publicGists
+     * The public_gists
+     */
+    public void setPublicGists(int publicGists) {
+        this.publicGists = publicGists;
+    }
+
+    /**
+     *
+     * @return
+     * The followers
+     */
+    public int getFollowers() {
+        return followers;
+    }
+
+    /**
+     *
+     * @param followers
+     * The followers
+     */
+    public void setFollowers(int followers) {
+        this.followers = followers;
+    }
+
+    /**
+     *
+     * @return
+     * The following
+     */
+    public int getFollowing() {
+        return following;
+    }
+
+    /**
+     *
+     * @param following
+     * The following
+     */
+    public void setFollowing(int following) {
+        this.following = following;
+    }
+
+    /**
+     *
+     * @return
+     * The createdAt
+     */
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     *
+     * @param createdAt
+     * The created_at
+     */
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    /**
+     *
+     * @return
+     * The updatedAt
+     */
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    /**
+     *
+     * @param updatedAt
+     * The updated_at
+     */
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public void toString1() {
+        Log.d("maciek", getName() + " " + getAvatarUrl() + " " + getLogin() + " " + getEmail() + " " + getUrl());
+    }
 }

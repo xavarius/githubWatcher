@@ -7,15 +7,18 @@ import android.widget.TextView;
 import com.maciejmalak.githubstatistics.R;
 import com.maciejmalak.githubstatistics.model.GithubStatisticModel;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
+
+
+/*TODO REIMPLEMENT COMPLETLY */
 
 public class UserDetailedView extends AppCompatActivity {
 
     final GithubStatisticModel mModel = GithubStatisticModel.getInstance();
 
-    @Bind(R.id.detailed_user_name) protected TextView mTvUserName;
-    @Bind(R.id.detailed_nbr_repos) protected TextView mTvNbrRepos;
+    @BindView(R.id.detailed_user_name) protected TextView mTvUserName;
+    @BindView(R.id.detailed_nbr_repos) protected TextView mTvNbrRepos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
