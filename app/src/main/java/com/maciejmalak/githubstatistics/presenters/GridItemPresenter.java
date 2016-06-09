@@ -2,7 +2,6 @@ package com.maciejmalak.githubstatistics.presenters;
 
 import android.content.Context;
 import android.support.v17.leanback.widget.Presenter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,15 +10,15 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.maciejmalak.githubstatistics.R;
-import com.maciejmalak.githubstatistics.model.GithubUser;
+import com.maciejmalak.githubstatistics.model.Owner;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class GridItemPresenter extends Presenter {
-    @BindView(R.id.user_name)
+    @BindView(R.id.card_text)
     TextView mUserName;
-    @BindView(R.id.user_avatar)
+    @BindView(R.id.card_avatar)
     ImageView mUserAvatar;
 
     @Override
@@ -34,12 +33,15 @@ public class GridItemPresenter extends Presenter {
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, Object item) {
-        final GithubUser user = (GithubUser) item;
-        mUserName.setText(user.mUserName);
+        final Owner user = (Owner) item;
+        mUserName.setText(user.getLogin() == null ? user.getName() : user.getLogin());
 
         final Context context = viewHolder.view.getContext();
-        Log.d("maciek", "onBindViewHolder: " + user.mUserAvatarUri);
-        Glide.with(context).load(user.mUserAvatarUri).fitCenter().into(mUserAvatar);
+
+        Glide.with(context)
+             .load(user.getAvatarUrl())
+             .fitCenter()
+             .into(mUserAvatar);
     }
 
     @Override

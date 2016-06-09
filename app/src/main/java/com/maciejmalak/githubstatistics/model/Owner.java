@@ -106,6 +106,7 @@ public class Owner {
      * The login
      */
     public String getLogin() {
+
         return login;
     }
 
@@ -638,9 +639,5 @@ public class Owner {
      */
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
-    }
-
-    public void toString1() {
-        Log.d("maciek", getName() + " " + getAvatarUrl() + " " + getLogin() + " " + getEmail() + " " + getUrl());
     }
 }

@@ -1,8 +1,8 @@
 package com.maciejmalak.githubstatistics.activities;
 
-import com.maciejmalak.githubstatistics.model.GithubUser;
+import com.maciejmalak.githubstatistics.model.Owner;
 
 public interface HomeView {
-    void addNewUserToGrid(final GithubUser user);
+    void addNewUserToGrid(final Owner user);
     void startUserDetailedActivity();
 }

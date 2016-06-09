@@ -13,16 +13,17 @@ public class GithubInteractorImpl implements GithubInteractor {
     private final Logger logger = new Logger(this.getClass().getSimpleName());
 
     private static final String BASE_URL = "https://api.github.com/";
-    private static final Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl(BASE_URL)
+    private static final Retrofit retrofit =
+            new Retrofit.Builder().baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
     private static final Github githubAPI = retrofit.create(Github.class);
-    private OnFinishedListener mPresenter;
 
-    public GithubInteractorImpl(final OnFinishedListener presenter) {
-        mPresenter = presenter;
+    private OnFinishedListener onFinishedListener;
+
+    public GithubInteractorImpl(final OnFinishedListener finishedListener) {
+        onFinishedListener = finishedListener;
     }
 
     @Override
@@ -34,7 +35,7 @@ public class GithubInteractorImpl implements GithubInteractor {
                 logger.logd("RESPONSE OK, code:  " + Integer.toString(response.code()));
 
                 final Owner owner = response.body();
-                mPresenter.onFinished(owner);
+                onFinishedListener.onFinished(owner);
                 /*TODO Storing data */
 //                GithubStatisticModel.getInstance().putRepositories(userName, owner);
             }

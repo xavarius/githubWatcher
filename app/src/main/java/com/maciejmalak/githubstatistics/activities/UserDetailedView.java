@@ -10,9 +10,6 @@ import com.maciejmalak.githubstatistics.model.GithubStatisticModel;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-
-/*TODO REIMPLEMENT COMPLETLY */
-
 public class UserDetailedView extends AppCompatActivity {
 
     final GithubStatisticModel mModel = GithubStatisticModel.getInstance();

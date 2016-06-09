@@ -4,12 +4,12 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/user_avatar"
+        android:id="@+id/card_avatar"
         android:layout_width="100dp"
         android:layout_height="100dp" />
 
     <TextView
-        android:id="@+id/user_name"
+        android:id="@+id/card_text"
         android:layout_width="100dp"
         android:layout_height="20dp"
         android:background="@android:color/holo_green_dark"
