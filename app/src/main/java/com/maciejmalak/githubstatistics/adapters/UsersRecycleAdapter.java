@@ -16,8 +16,26 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class UsersRecycleAdapter extends RecyclerView.Adapter<UsersRecycleAdapter.ViewHolder>{
+public class UsersRecycleAdapter extends RecyclerView.Adapter<UsersRecycleAdapter.ViewHolder> {
     private ArrayList<Owner> mData = new ArrayList<>();
+
+    private OnClickListener mListener;
+
+    public interface OnClickListener {
+        public abstract void onItemClicked(final int adapterPosition);
+    }
+
+    public void unremoveListener() {
+        mListener = null;
+    }
+
+    public void registerListener(final OnClickListener listener) {
+        mListener = listener;
+    }
+
+    public Object getItemAtPosition(final int pos) {
+        return mData.get(pos);
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -28,13 +46,24 @@ public class UsersRecycleAdapter extends RecyclerView.Adapter<UsersRecycleAdapte
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         final Owner user = mData.get(position);
+        final View view = holder.itemView;
 
-        Glide.with(holder.itemView.getContext())
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onItemClicked(holder.getAdapterPosition());
+            }
+        });
+
+        Glide.with(view.getContext())
                 .load(user.getAvatarUrl())
                 .into(holder.mUserAvatar);
-        holder.mUserName.setText(user.getLogin());
+
+        final TextView userName = holder.mUserName;
+        userName.setText(user.getLogin() == null ? "dunno" : user.getLogin());
+
     }
 
     @Override
@@ -46,7 +75,7 @@ public class UsersRecycleAdapter extends RecyclerView.Adapter<UsersRecycleAdapte
         mData.add((Owner) newItem);
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.card_avatar)
         ImageView mUserAvatar;
         @BindView(R.id.card_text)

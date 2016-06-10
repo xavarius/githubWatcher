@@ -6,8 +6,10 @@ import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 @Generated("org.jsonschema2pojo")
-public class Owner {
+public class Owner implements Serializable {
 
     @SerializedName("login")
     @Expose

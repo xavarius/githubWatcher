@@ -4,5 +4,5 @@ import com.maciejmalak.githubstatistics.model.Owner;
 
 public interface HomeView {
     void addNewUserToGrid(final Owner user);
-    void startUserDetailedActivity();
+    void startUserDetailedActivity(final Owner user);
 }

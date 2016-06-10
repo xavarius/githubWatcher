@@ -90,5 +90,5 @@ public class MainTvFragment extends BrowseFragment implements HomeView {
     }
 
     @Override
-    public void startUserDetailedActivity() {}
+    public void startUserDetailedActivity(final Owner user) {}
 }

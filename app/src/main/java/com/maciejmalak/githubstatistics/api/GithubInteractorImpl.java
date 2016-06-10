@@ -1,6 +1,7 @@
 package com.maciejmalak.githubstatistics.api;
 
 import com.maciejmalak.githubstatistics.helpers.Logger;
+import com.maciejmalak.githubstatistics.model.GithubStatisticModel;
 import com.maciejmalak.githubstatistics.model.Owner;
 
 import retrofit2.Call;
@@ -35,9 +36,8 @@ public class GithubInteractorImpl implements GithubInteractor {
                 logger.logd("RESPONSE OK, code:  " + Integer.toString(response.code()));
 
                 final Owner owner = response.body();
+                GithubStatisticModel.getInstance().storeUser(owner);
                 onFinishedListener.onFinished(owner);
-                /*TODO Storing data */
-//                GithubStatisticModel.getInstance().putRepositories(userName, owner);
             }
 
             @Override

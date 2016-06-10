@@ -1,5 +1,6 @@
 package com.maciejmalak.githubstatistics.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -16,8 +17,8 @@ import com.maciejmalak.githubstatistics.presenters.PresenterImpl;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements HomeView {
-    private static final int NUMBER_OF_COLUMS = 2;
+public class MainActivity extends AppCompatActivity implements HomeView, UsersRecycleAdapter.OnClickListener {
+    private static final int NUMBER_OF_COLUMS = 3;
 
     private PresenterImpl mPresenter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -52,17 +53,34 @@ public class MainActivity extends AppCompatActivity implements HomeView {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        mAdapter.registerListener(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mAdapter.unremoveListener();
+    }
+
+    @Override
     public void addNewUserToGrid(final Owner user) {
         mAdapter.add(user);
         mAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public void startUserDetailedActivity() {
+    public void startUserDetailedActivity(final Owner user) {
 //        TODO start activity based on previously choosed elemetn of list
-        /*final Intent startActivity = new Intent(this.getApplicationContext(), UserDetailedView.class);
+        final Intent startActivity = new Intent(this.getApplicationContext(), UserDetailedView.class);
         startActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity.putExtra(UserDetailedView.class.getName(), userName);
-        this.getApplicationContext().startActivity(startActivity);*/
+        startActivity.putExtra(UserDetailedView.class.getName(), user);
+        this.getApplicationContext().startActivity(startActivity);
+    }
+
+    @Override
+    public void onItemClicked(final int adapterPostion) {
+        startUserDetailedActivity((Owner) mAdapter.getItemAtPosition(adapterPostion));
     }
 }
