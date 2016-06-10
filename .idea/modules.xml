@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/githubStatistics.iml" filepath="$PROJECT_DIR$/githubStatistics.iml" />
       <module fileurl="file://$PROJECT_DIR$/githubWatcher.iml" filepath="$PROJECT_DIR$/githubWatcher.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sofa/sofa.iml" filepath="$PROJECT_DIR$/sofa/sofa.iml" />
     </modules>
   </component>
 </project>

@@ -1,1 +1,1 @@
-include ':app', ':sofa'
+include ':app'
