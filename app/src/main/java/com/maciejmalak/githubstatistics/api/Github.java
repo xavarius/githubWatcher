@@ -10,6 +10,8 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 public interface Github {
+    public static final String BASE_URL = "https://api.github.com/";
+
     @GET("users/{user}")
     Call<Owner> listRepos(@Path("user") String user);
 }

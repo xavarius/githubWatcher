@@ -16,10 +16,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class GridItemPresenter extends Presenter {
-    @BindView(R.id.card_text)
-    TextView mUserName;
-    @BindView(R.id.card_avatar)
-    ImageView mUserAvatar;
+    @BindView(R.id.card_text) TextView mUserName;
+    @BindView(R.id.card_avatar) ImageView mUserAvatar;
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent) {

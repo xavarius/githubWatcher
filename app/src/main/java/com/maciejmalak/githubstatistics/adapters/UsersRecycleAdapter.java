@@ -25,7 +25,7 @@ public class UsersRecycleAdapter extends RecyclerView.Adapter<UsersRecycleAdapte
         public abstract void onItemClicked(final int adapterPosition);
     }
 
-    public void unremoveListener() {
+    public void unregisterListener() {
         mListener = null;
     }
 
@@ -33,8 +33,17 @@ public class UsersRecycleAdapter extends RecyclerView.Adapter<UsersRecycleAdapte
         mListener = listener;
     }
 
+    public void add(final Object newItem) {
+        mData.add((Owner) newItem);
+    }
+
     public Object getItemAtPosition(final int pos) {
         return mData.get(pos);
+    }
+
+    @Override
+    public int getItemCount() {
+        return mData.size();
     }
 
     @Override
@@ -66,20 +75,9 @@ public class UsersRecycleAdapter extends RecyclerView.Adapter<UsersRecycleAdapte
 
     }
 
-    @Override
-    public int getItemCount() {
-        return mData.size();
-    }
-
-    public void add(final Object newItem) {
-        mData.add((Owner) newItem);
-    }
-
     static class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.card_avatar)
-        ImageView mUserAvatar;
-        @BindView(R.id.card_text)
-        TextView mUserName;
+        @BindView(R.id.card_avatar) ImageView mUserAvatar;
+        @BindView(R.id.card_text) TextView mUserName;
 
         public ViewHolder(final View itemView) {
             super(itemView);

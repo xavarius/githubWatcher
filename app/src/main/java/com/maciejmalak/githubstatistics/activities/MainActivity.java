@@ -24,9 +24,9 @@ public class MainActivity extends AppCompatActivity implements HomeView, UsersRe
     private RecyclerView.LayoutManager mLayoutManager;
     private UsersRecycleAdapter mAdapter;
 
-    @BindView(R.id.toolbar) protected Toolbar mToolbar;
-    @BindView(R.id.fab) protected FloatingActionButton mFab;
-    @BindView(R.id.user_recycler_view) protected RecyclerView mRecyclerView;
+    @BindView(R.id.toolbar) Toolbar mToolbar;
+    @BindView(R.id.fab) FloatingActionButton mFab;
+    @BindView(R.id.user_recycler_view) RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements HomeView, UsersRe
         ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
 
+        /*TODO Flexible number of columns depend on device screen params */
         mLayoutManager = new GridLayoutManager(this, NUMBER_OF_COLUMS);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements HomeView, UsersRe
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPresenter.onNewUserAdded("MaciejSzaflik");
+                mPresenter.onNewUserAdded("MaciejSzaflik"); /*TODO get rid of dummy data*/
             }
         });
     }
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements HomeView, UsersRe
     @Override
     protected void onStop() {
         super.onStop();
-        mAdapter.unremoveListener();
+        mAdapter.unregisterListener();
     }
 
     @Override
@@ -72,11 +73,10 @@ public class MainActivity extends AppCompatActivity implements HomeView, UsersRe
 
     @Override
     public void startUserDetailedActivity(final Owner user) {
-//        TODO start activity based on previously choosed elemetn of list
         final Intent startActivity = new Intent(this.getApplicationContext(), UserDetailedView.class);
         startActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity.putExtra(UserDetailedView.class.getName(), user);
-        this.getApplicationContext().startActivity(startActivity);
+        startActivity(startActivity);
     }
 
     @Override

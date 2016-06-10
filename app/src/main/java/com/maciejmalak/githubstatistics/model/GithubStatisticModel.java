@@ -6,7 +6,7 @@ public class GithubStatisticModel {
     private static GithubStatisticModel mInstance = null;
     private static final ArrayList<Owner> mUserList = new ArrayList<>();
 
-    private GithubStatisticModel() {};
+    private GithubStatisticModel() {}
 
     public static synchronized GithubStatisticModel getInstance() {
         if (mInstance == null) {
