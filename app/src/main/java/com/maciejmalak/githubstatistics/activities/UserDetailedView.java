@@ -5,14 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.maciejmalak.githubstatistics.R;
-import com.maciejmalak.githubstatistics.model.GithubStatisticModel;
+import com.maciejmalak.githubstatistics.model.DataStorage;
+import com.maciejmalak.githubstatistics.model.GithubUser;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class UserDetailedView extends AppCompatActivity {
 
-    final GithubStatisticModel mModel = GithubStatisticModel.getInstance();
+    final DataStorage mModel = DataStorage.INSTANCE;
 
     @Bind(R.id.detailed_user_name) protected TextView mTvUserName;
     @Bind(R.id.detailed_nbr_repos) protected TextView mTvNbrRepos;
@@ -29,7 +30,6 @@ public class UserDetailedView extends AppCompatActivity {
 
     private void loadDetailedUserData(final String userName) {
         mTvUserName.setText(userName);
-        final int reposAmout = mModel.getRepositoryListForUser(userName).size();
-        mTvNbrRepos.setText(String.format("%d",reposAmout));
+        final GithubUser user = mModel.findUser(userName);
     }
 }

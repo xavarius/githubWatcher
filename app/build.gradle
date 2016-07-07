@@ -1,13 +1,14 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.android.application' //or apply plugin: 'java'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "19.1.0"
+    buildToolsVersion "21.1.2"
 
     defaultConfig {
         applicationId "com.maciejmalak.githubstatistics"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -18,10 +19,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
 }
 
 repositories {
     mavenCentral()
+    maven {
+        url "https://oss.sonatype.org/content/repositories/snapshots"
+    }
 }
 
 dependencies {
@@ -31,6 +38,8 @@ dependencies {
     compile 'com.android.support:design:23.1.1'
     compile 'com.squareup.retrofit2:retrofit:2.0.0-beta4'
     compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.jakewharton:kotterknife:0.1.0-SNAPSHOT'
     compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
     provided 'org.glassfish:javax.annotation:10.0-b28'
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
