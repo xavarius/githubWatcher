@@ -36,10 +36,13 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
+
     compile 'com.squareup.retrofit2:retrofit:2.0.0-beta4'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
+
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.jakewharton:kotterknife:0.1.0-SNAPSHOT'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
     provided 'org.glassfish:javax.annotation:10.0-b28'
+
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
