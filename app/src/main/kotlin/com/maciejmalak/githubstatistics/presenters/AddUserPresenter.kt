@@ -1,8 +1,8 @@
 package com.maciejmalak.githubstatistics.presenters
 
-import com.maciejmalak.githubstatistics.activities.IAddUser
+import com.maciejmalak.githubstatistics.activities.AddUserScreen
 
-class AddUserPresenter(val mView : IAddUser) : IAddUserPresenter {
+class AddUserPresenter(val mView : AddUserScreen) : AddUser {
     override fun onAddUserButtonClicked() {
         val username : String? = mView.getUserNameFieldText()
 

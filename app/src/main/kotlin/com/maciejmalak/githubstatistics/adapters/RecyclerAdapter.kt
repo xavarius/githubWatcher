@@ -8,12 +8,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import butterknife.bindView
 import com.maciejmalak.githubstatistics.R
-import com.maciejmalak.githubstatistics.model.GithubUser
+import com.maciejmalak.githubstatistics.model.Account
 
-class RecyclerViewUserAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    val dataSet : MutableList<GithubUser> = java.util.ArrayList<GithubUser>()
+class RecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    val dataSet : MutableList<Account> = java.util.ArrayList<Account>()
 
-    fun addToDataSet(user : GithubUser) {
+    fun addToDataSet(user : Account) {
         dataSet.add(user)
         notifyDataSetChanged()
     }
@@ -35,9 +35,11 @@ class RecyclerViewUserAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() 
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
         holder as ViewHolder
-        holder.userName.text = "Maciek"
-        holder.repoNbr.text = "6"
+        if( !dataSet.isEmpty()) {
+            holder.userName.text = dataSet[position].name
+            holder.repoNbr.text = dataSet[position].publicRepos.toString()
+        }
     }
 
-    override fun getItemCount(): Int = 1
+    override fun getItemCount(): Int = dataSet.size
 }

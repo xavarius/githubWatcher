@@ -6,12 +6,12 @@ import android.widget.TextView;
 
 import com.maciejmalak.githubstatistics.R;
 import com.maciejmalak.githubstatistics.model.DataStorage;
-import com.maciejmalak.githubstatistics.model.GithubUser;
+import com.maciejmalak.githubstatistics.model.Account;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class UserDetailedView extends AppCompatActivity {
+public class AccountDetailsScreen extends AppCompatActivity {
 
     final DataStorage mModel = DataStorage.INSTANCE;
 
@@ -25,11 +25,11 @@ public class UserDetailedView extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        loadDetailedUserData(getIntent().getExtras().getString(UserDetailedView.class.getName()));
+        loadDetailedUserData(getIntent().getExtras().getString(AccountDetailsScreen.class.getName()));
     }
 
     private void loadDetailedUserData(final String userName) {
         mTvUserName.setText(userName);
-        final GithubUser user = mModel.findUser(userName);
+        final Account user = mModel.findUser(userName);
     }
 }

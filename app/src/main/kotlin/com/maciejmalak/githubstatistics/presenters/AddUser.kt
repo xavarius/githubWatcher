@@ -1,5 +1,5 @@
 package com.maciejmalak.githubstatistics.presenters
 
-interface IAddUserPresenter {
+interface AddUser {
     fun onAddUserButtonClicked()
 }

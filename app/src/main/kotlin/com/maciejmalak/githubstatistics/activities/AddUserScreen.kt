@@ -1,7 +1,9 @@
 package com.maciejmalak.githubstatistics.activities
 
-interface IAddUser {
-    fun closeActivity(username : String)
+import org.jetbrains.annotations.NotNull
+
+interface AddUserScreen {
+    fun closeActivity(@NotNull username : String)
     fun showUsernameValidationError()
     fun getUserNameFieldText() : String?
 }
