@@ -9,6 +9,7 @@ import android.widget.TextView
 import butterknife.bindView
 import com.maciejmalak.githubstatistics.R
 import com.maciejmalak.githubstatistics.model.Account
+import com.squareup.picasso.Picasso
 
 class RecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val dataSet : MutableList<Account> = java.util.ArrayList<Account>()
@@ -38,6 +39,11 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         if( !dataSet.isEmpty()) {
             holder.userName.text = dataSet[position].name
             holder.repoNbr.text = dataSet[position].publicRepos.toString()
+
+            Picasso
+                    .with(holder.itemView.context)
+                    .load(dataSet[position].avatarUrl)
+                    .into(holder.userAvatar)
         }
     }
 
